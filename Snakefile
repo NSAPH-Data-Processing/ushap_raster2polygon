@@ -50,27 +50,29 @@ rule pkl_shapefiles:
 rule download_ushap:
     output:
         f"data/input/ushap/{temporal_freq}/{{year}}/{ushap_cfg[temporal_freq]['file_name']}"
+    params:
+        year="{year}"
     shell:
         f"""
-        python src/download_ushap.py temporal_freq={temporal_freq} year={{wildcards.year}}
+        python src/download_ushap.py temporal_freq={temporal_freq} year={{params.year}}
         """
 
 def get_pkl_path(wildcards):
     shapefile_year = available_shapefile_year(int(wildcards.year), shapefile_years_list)
     return f"data/intermediate/pkl_shapefiles/shapefile_{polygon_name}_{shapefile_year}.pkl"
 
-# Function to generate file paths based on temporal frequency and year
-def get_ushap_paths(year):
-    base_path = f"data/input/ushap/{temporal_freq}/{year}"
+def get_ushap_paths(wildcards):
+    base_path = f"data/input/ushap/{temporal_freq}/{wildcards.year}"
     if temporal_freq == "yearly":
-        return [f"{base_path}/{ushap_cfg[temporal_freq]['file_name']}"]  # Return list even for a single file
+        return [f"{base_path}/{ushap_cfg[temporal_freq]['file_name'].format(year=wildcards.year)}"]
     else:
-        return [f"{base_path}/{month}/{ushap_cfg[temporal_freq]['file_name'].format(month=month)}" for month in range(1, 13)]
+        month_list = [f"{m:02}" for m in range(1, 13)]
+        return [f"{base_path}/{ushap_cfg[temporal_freq]['file_name'].format(year=wildcards.year, month=month)}" for month in month_list]
 
 rule aggregate_ushap:
     input:
         get_pkl_path,
-        get_ushap_paths("{year}")
+        get_ushap_paths
     output:
         f"data/output/ushap_raster2polygon/{temporal_freq}/{polygon_name}/ushap_{{year}}.parquet"
     shell:
