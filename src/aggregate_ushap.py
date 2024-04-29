@@ -160,7 +160,7 @@ def main(cfg):
         df = pd.concat(df_chunks)
 
     # == save output file
-    # Construct the base path, handle potential symlinks
+    # Construct the base path, while handling potential symlinks
     base_path = f"data/output/ushap_raster2polygon/{cfg.temporal_freq}"
     real_path = os.path.realpath(base_path)
     full_path = os.path.join(real_path, cfg.polygon_name)

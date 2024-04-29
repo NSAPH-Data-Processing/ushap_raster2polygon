@@ -10,27 +10,27 @@ def get_url(base_url, year):
 
 @hydra.main(config_path="../conf", config_name="config", version_base=None)
 def main(cfg):
-    url = cfg.ushap[cfg.temporal_freq].base_url.format(year=cfg.year) #TODO replace with config entry cfg.ushap.url
-    tgt = f"data/input/ushap/{cfg.temporal_freq}" #TODO replace daily with config
+    url = cfg.ushap[cfg.temporal_freq].base_url.format(year=cfg.year)
+    tgt_path = f"data/input/ushap/{cfg.temporal_freq}"
 
     if cfg.temporal_freq == "daily" or cfg.temporal_freq == "monthly":
+        tgt_file = f"{tgt_path}/ushap_{cfg.year.zip}"
+
         logging.info(f"Downloading {url}")
-        wget.download(url, f"{tgt}/zipfile.zip")
+        wget.download(url, tgt_file)
         logging.info(f"Done.")
 
         # unzip 
-        with zipfile.ZipFile(f"{tgt}/zipfile.zip", "r") as zip_ref:
-            zip_ref.extractall(f"{tgt}/{cfg.year}")
+        with zipfile.ZipFile(tgt_file, "r") as zip_ref:
+            zip_ref.extractall(f"{tgt_path}/{cfg.year}")
         logging.info(f"Unzipped zip for year {cfg.year}")
-
-        # remove zip file
-        os.remove(f"{tgt}/zipfile.zip")
-        logging.info(f"Removed zip")
 
     elif cfg.temporal_freq == "yearly":
         logging.info(f"Downloading {url}")
-        os.makedirs(f"{tgt}/{cfg.year}", exist_ok=True)
-        wget.download(url, f"{tgt}/{cfg.year}/")
+        # Construct the base path, while handling potential symlinks
+        real_path = os.path.realpath(tgt_path)
+        os.makedirs(os.path.join(real_path, cfg.year), exist_ok=True)
+        wget.download(url, f"{tgt_path}/{cfg.year}/")
         logging.info(f"Done.")
 
 if __name__ == "__main__":
