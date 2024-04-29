@@ -49,7 +49,7 @@ rule pkl_shapefiles:
 
 rule download_ushap:
     output:
-        f"data/input/ushap/{temporal_freq}/{{year}}/{ushap_cfg[temporal_freq]['file_name']}"
+        f"data/input/ushap/{temporal_freq}/{{year}}/{ushap_cfg[temporal_freq]['file_name']}" if temporal_freq == "yearly" else f"data/input/ushap/{temporal_freq}/ushap_{{year}}.zip"
     params:
         year="{year}"
     shell:
@@ -66,8 +66,7 @@ def get_ushap_paths(wildcards):
     if temporal_freq == "yearly":
         return [f"{base_path}/{ushap_cfg[temporal_freq]['file_name'].format(year=wildcards.year)}"]
     else:
-        month_list = [f"{m:02}" for m in range(1, 13)]
-        return [f"{base_path}/{ushap_cfg[temporal_freq]['file_name'].format(year=wildcards.year, month=month)}" for month in month_list]
+        return [f"data/input/ushap/{temporal_freq}/ushap_{wildcards.year}.zip"]
 
 rule aggregate_ushap:
     input:

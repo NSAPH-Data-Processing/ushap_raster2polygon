@@ -14,7 +14,7 @@ def main(cfg):
     tgt_path = f"data/input/ushap/{cfg.temporal_freq}"
 
     if cfg.temporal_freq == "daily" or cfg.temporal_freq == "monthly":
-        tgt_file = f"{tgt_path}/ushap_{cfg.year.zip}"
+        tgt_file = f"{tgt_path}/ushap_{cfg.year}.zip"
 
         logging.info(f"Downloading {url}")
         wget.download(url, tgt_file)
