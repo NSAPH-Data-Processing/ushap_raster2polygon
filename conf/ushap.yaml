@@ -1,0 +1,15 @@
+# @package ushap
+
+daily:
+  base_url : "https://zenodo.org/records/7884640/files/USHAP_PM2.5_D1K_{year}_V1.zip?download=1"
+  file_name : "USHAP_PM2.5_D1K_{year}{month}{day}_V1.nc"
+monthly:
+  base_url : "https://zenodo.org/records/7884640/files/USHAP_PM2.5_M1K_{year}_V1.zip?download=1"
+  file_name : "USHAP_PM2.5_M1K_{year}{month}_V1.nc"
+yearly:
+  base_url : "https://zenodo.org/records/7884640/files/USHAP_PM2.5_Y1K_{year}_V1.nc?download=1"
+  file_name : "USHAP_PM2.5_Y1K_{year}_V1.nc"
+
+layer: "PM2.5" #geographic weighted regression PM2.5
+latitude_dim: "lat"
+longitude_dim: "lon"
