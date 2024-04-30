@@ -22,7 +22,7 @@ def main(cfg):
 
         # unzip 
         with zipfile.ZipFile(tgt_file, "r") as zip_ref:
-            zip_ref.extractall(f"{tgt_path}/{cfg.year}")
+            zip_ref.extractall(f"{tgt_path}/{cfg.year}") if cfg.temporal_freq == "monthly" else zip_ref.extractall(tgt_path)
         logging.info(f"Unzipped zip for year {cfg.year}")
 
     elif cfg.temporal_freq == "yearly":
