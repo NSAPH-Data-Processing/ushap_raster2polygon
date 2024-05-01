@@ -1,0 +1,16 @@
+# if files are stored within the local copy of the repository, then use null:
+input:
+  ushap:
+    daily: null
+    monthly: null
+    yearly: null
+  shapefiles: null
+
+intermediate:
+  pkl_shapefiles: null
+
+output:
+  ushap_raster2polygon: 
+    daily: /n/dominici_lab/lab/data/exposures/exposure/ushap_raster2polygon/daily
+    monthly: /n/dominici_lab/lab/data/exposures/exposure/ushap_raster2polygon/monthly
+    yearly: /n/dominici_lab/lab/data/exposures/exposure/ushap_raster2polygon/yearly
