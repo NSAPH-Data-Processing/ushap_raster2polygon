@@ -1,0 +1,6 @@
+# cfg.shapefile_year and cfg.polygon_name are used to match the shapefile to dowload
+
+bronx: # County shapefiles (cartographic boundaries) https://www.census.gov/programs-surveys/geography/guidance/tiger-data-products-guide.html
+  2021:
+    url: NULL
+    idvar: GEOID

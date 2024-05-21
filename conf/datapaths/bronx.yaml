@@ -1,0 +1,16 @@
+# if files are stored within the local copy of the repository, then use null:
+input:
+  ushap:
+    daily: null
+    monthly: null
+    yearly: null
+  shapefiles: /Users/mia694/Github/nsaph-data-processing/ushap_raster2polygon/shapefiles
+
+intermediate:
+  pkl_shapefiles: null
+
+output:
+  ushap_raster2polygon: 
+    daily: null
+    monthly: null
+    yearly: null
