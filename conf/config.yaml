@@ -1,12 +1,12 @@
 defaults:
   - _self_
-  - datapaths: local
+  - datapaths: bronx
   - ushap
   - shapefiles: bronx
 
 # == aggregation args
 temporal_freq: monthly  # daily, monthly, yearly
-year: 2002
+year: 2020
 
 # == shapefile download args
 polygon_name: bronx   # zcta, county
@@ -17,5 +17,3 @@ plot_output: true  # plots the first day of each var aggregation for debugging
 hydra:
   run:
     dir: logs/${now:%Y-%m-%d}/${now:%H-%M-%S}
-
-    
