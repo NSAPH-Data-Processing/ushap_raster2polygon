@@ -2,15 +2,15 @@ defaults:
   - _self_
   - datapaths: local
   - ushap
-  - shapefiles: us_census
+  - shapefiles: bronx
 
 # == aggregation args
 temporal_freq: monthly  # daily, monthly, yearly
 year: 2002
 
 # == shapefile download args
-polygon_name: county   # zcta, county
-shapefile_year: 2000
+polygon_name: bronx   # zcta, county
+shapefile_year: 2021
 
 plot_output: true  # plots the first day of each var aggregation for debugging
 
