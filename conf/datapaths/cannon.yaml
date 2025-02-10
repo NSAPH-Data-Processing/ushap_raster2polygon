@@ -1,16 +1,16 @@
 # if files are stored within the local copy of the repository, then use null:
 input:
   ushap:
-    daily: null
-    monthly: null
-    yearly: null
+    daily: /n/dominici_lab/lab/lego/environmental/pm25__ushap/raw/daily
+    monthly: /n/dominici_lab/lab/lego/environmental/pm25__ushap/raw/monthly
+    yearly: /n/dominici_lab/lab/lego/environmental/pm25__ushap/raw/yearly
   shapefiles: null
 
 intermediate:
-  pkl_shapefiles: null
+  pkl_shapefiles: /n/dominici_lab/lab/lego/environmental/pm25__ushap/.intermediate
 
 output:
   ushap_raster2polygon: 
-    daily: /n/dominici_lab/lab/data/exposures/exposure/ushap_raster2polygon/daily
-    monthly: /n/dominici_lab/lab/data/exposures/exposure/ushap_raster2polygon/monthly
-    yearly: /n/dominici_lab/lab/data/exposures/exposure/ushap_raster2polygon/yearly
+    zcta_daily: /n/dominici_lab/lab/lego/environmental/pm25__ushap/zcta_daily
+    zcta_monthly: /n/dominici_lab/lab/lego/environmental/pm25__ushap/zcta_monthly
+    zcta_yearly: /n/dominici_lab/lab/lego/environmental/pm25__ushap/zcta_yearly
