@@ -31,6 +31,9 @@ def main(cfg):
         real_path = os.path.realpath(tgt_path)
         os.makedirs(os.path.join(real_path, cfg.year), exist_ok=True)
         wget.download(url, f"{tgt_path}/{cfg.year}/")
+        #year converted to a string (alterative approach when temppral_freq is yearly)
+        #os.makedirs(os.path.join(real_path, str(cfg.year)), exist_ok=True) 
+        #wget.download(url, f"{tgt_path}/{str(cfg.year)}/") 
         logging.info(f"Done.")
 
 if __name__ == "__main__":
