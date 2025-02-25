@@ -1,15 +1,15 @@
 defaults:
   - _self_
-  - datapaths: local
+  - datapaths: cannon
   - ushap
   - shapefiles: us_census
 
 # == aggregation args
-temporal_freq: monthly  # daily, monthly, yearly
+temporal_freq: yearly  # daily, monthly, yearly
 year: 2002
 
 # == shapefile download args
-polygon_name: county   # zcta, county
+polygon_name: zcta   # zcta, county
 shapefile_year: 2000
 
 plot_output: true  # plots the first day of each var aggregation for debugging

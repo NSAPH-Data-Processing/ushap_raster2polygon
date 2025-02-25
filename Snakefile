@@ -22,10 +22,11 @@ print(f"shapefile_years_list: {shapefile_years_list}")
 years_list = list(range(2000, 2020+1))
 print(f"years_list: {years_list}")
 
-# == Define rules ==
+# == Define rules == 
 rule all:
     input:
-        expand(f"data/output/ushap_raster2polygon/{temporal_freq}/{polygon_name}/ushap_{{year}}.parquet", 
+        expand(
+            f"data/output/ushap_raster2polygon/{polygon_name}_{temporal_freq}/pm25__ushap__{polygon_name}_{temporal_freq}__{{year}}.parquet",
             year=years_list
         )
 
@@ -73,7 +74,7 @@ rule aggregate_ushap:
         get_pkl_path,
         get_ushap_paths
     output:
-        f"data/output/ushap_raster2polygon/{temporal_freq}/{polygon_name}/ushap_{{year}}.parquet"
+        f"data/output/ushap_raster2polygon/{polygon_name}_{temporal_freq}/pm25__ushap__{polygon_name}_{temporal_freq}__{{year}}.parquet"
     shell:
         f"""
         PYTHONPATH=. python src/aggregate_ushap.py polygon_name={polygon_name} temporal_freq={temporal_freq} year={{wildcards.year}} 

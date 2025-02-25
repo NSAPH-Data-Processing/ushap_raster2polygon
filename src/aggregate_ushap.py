@@ -161,13 +161,11 @@ def main(cfg):
 
     # == save output file
     # Construct the base path, while handling potential symlinks
-    base_path = f"data/output/ushap_raster2polygon/{cfg.temporal_freq}"
-    real_path = os.path.realpath(base_path)
-    full_path = os.path.join(real_path, cfg.polygon_name)
-    os.makedirs(full_path, exist_ok=True)
-    output_file = f"{full_path}/ushap_{cfg.year}.parquet"
+    base_path = f"data/output/ushap_raster2polygon/{cfg.polygon_name}_{cfg.temporal_freq}"
+    output_file = f"{base_path}/pm25__ushap__{cfg.polygon_name}_{cfg.temporal_freq}__{cfg.year}.parquet"
     
     LOGGER.info(f"Saving output to {output_file}")
+    df.rename(columns=cfg.ushap.rename_vars, inplace=True)
     df.to_parquet(output_file)
 
 if __name__ == "__main__":

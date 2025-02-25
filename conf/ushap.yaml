@@ -11,5 +11,7 @@ yearly:
   file_name : "USHAP_PM2.5_Y1K_{year}_V1.nc"
 
 layer: "PM2.5" #geographic weighted regression PM2.5
+rename_vars:
+  "PM2.5": "pm25"
 latitude_dim: "lat"
 longitude_dim: "lon"
