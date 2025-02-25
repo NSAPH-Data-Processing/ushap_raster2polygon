@@ -165,7 +165,7 @@ def main(cfg):
     output_file = f"{base_path}/pm25__ushap__{cfg.polygon_name}_{cfg.temporal_freq}__{cfg.year}.parquet"
     
     LOGGER.info(f"Saving output to {output_file}")
-    df.rename(columns={"PM2.5": "PM25"}, inplace=True)
+    df.rename(columns=cfg.ushap.rename_vars, inplace=True)
     df.to_parquet(output_file)
 
 if __name__ == "__main__":
